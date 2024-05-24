@@ -39,7 +39,23 @@ export class Animal extends Model {
   }
 }
 
-// TODO: Animal.init()
+Animal.init({
+  animal_id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+  },
+  name: {
+    type: DataTypes.STRING(50),
+    allowNull: false,
+  },
+  species: {
+    type: DataTypes.STRING(25),
+    allowNull: false,
+  },
+  birth_year: {
+    type: DataTypes.INTEGER,
+  },
+});
 
 // TODO: Define Relationship
 
