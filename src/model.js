@@ -16,7 +16,7 @@ export class Human extends Model {
    * @returns as string of the first and last name
    */
   getFullName() {
-    return `${Human.fname} ${Human.lname}`;
+    return `${this.fname} ${this.lname}`;
   }
 }
 
@@ -77,13 +77,6 @@ Animal.init(
 
 // Model Relationships
 Human.hasMany(Animal, { foreignKey: "humanId" });
-Animal.belongsTo(Human, { foreignKey: "humanId" }); // TODO: This may need a foreignKey of "animal_id"
-
-// TODO: Get rid of following if not needed
-// if (process.argv[1] === url.fileURLToPath(import.meta.url)) {
-//   console.log("Syncing DB...");
-//   await db.sync({ alter: true });
-//   console.log("Finished syncing DB.");
-// }
+Animal.belongsTo(Human, { foreignKey: "humanId" });
 
 export default db;
