@@ -1,4 +1,4 @@
-import { Sequelize } from 'sequelize';
+import { Sequelize } from "sequelize";
 
 async function connectToDB(dbURI) {
   console.log(`Connecting to DB: ${dbURI}`);
@@ -8,14 +8,15 @@ async function connectToDB(dbURI) {
     define: {
       timestamps: false, // don't want created_at or updated_at columns
       underscored: true, // use snake_case rather than camelCase column names
+      password: "admin",
     },
   });
 
   try {
     await sequelize.authenticate();
-    console.log('Connected to DB successfully!');
+    console.log("Connected to DB successfully!");
   } catch (error) {
-    console.error('Unable to connect to DB:', error);
+    console.error("Unable to connect to DB:", error);
   }
 
   return sequelize;

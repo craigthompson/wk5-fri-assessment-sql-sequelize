@@ -6,9 +6,12 @@
   "scripts": {
     "test": "cross-env NODE_OPTIONS=\"--experimental-vm-modules --no-warnings\" jest",
     "start": "npm run test",
-    "db:create": "createdb cupcakes",
-    "db:seed": "psql cupcakes < cupcakes.sql",
-    "db:shell": "psql cupcakes"
+    "db:create:cupcakes": "createdb cupcakes",
+    "db:seed:cupcakes": "psql cupcakes < cupcakes.sql",
+    "db:shell:cupcakes": "psql cupcakes",
+    "db:create:animals": "createdb animals",
+    "db:seed:animals": "psql animals < animals.sql",
+    "db:shell:animals": "psql animals"
   },
   "keywords": [],
   "author": "",
