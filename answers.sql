@@ -44,3 +44,23 @@ FROM orders
 SELECT SUM(num_cupcakes) 
 FROM orders
 WHERE processed=false;
+
+-----------------------------------------------------------------
+--  PROBLEM 4
+-----------------------------------------------------------------
+--  Management needs an inventory report. They want to know how 
+--    many cupcakes have been ordered of each type.
+
+--  Write a query that shows the name of each cupcake and the sum 
+--    of cupcakes ordered for that cupcake type (for both 
+--    processed and unprocessed orders), sorted in ascending 
+--    alphabetical order of cupcake name.
+
+--  The report should show all cupcake types, even if they have 
+--    not been ordered at all.
+SELECT name, SUM(o.num_cupcakes)
+FROM cupcakes AS c
+	LEFT JOIN orders AS o
+		ON c.id = o.cupcake_id
+GROUP BY c.name
+ORDER BY name ASC;
