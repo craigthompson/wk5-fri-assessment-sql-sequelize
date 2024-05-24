@@ -8,8 +8,8 @@ async function connectToDB(dbURI) {
     define: {
       timestamps: false, // don't want created_at or updated_at columns
       underscored: true, // use snake_case rather than camelCase column names
-      password: "admin",
     },
+    password: "admin",
   });
 
   try {
