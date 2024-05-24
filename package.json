@@ -5,7 +5,10 @@
   "type": "module",
   "scripts": {
     "test": "cross-env NODE_OPTIONS=\"--experimental-vm-modules --no-warnings\" jest",
-    "start": "npm run test"
+    "start": "npm run test",
+    "db:create": "createdb cupcakes",
+    "db:seed": "psql cupcakes < cupcakes.sql",
+    "db:shell": "psql cupcakes"
   },
   "keywords": [],
   "author": "",
