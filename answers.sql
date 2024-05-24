@@ -27,9 +27,20 @@ ORDER BY email ASC;
 --    by customers with the first name Elizabeth and last name 
 --    Crocker. Use a SUBQUERY to do this, not a join.
 SELECT id 
-FROM public.orders 
+FROM orders 
   WHERE customer_id = 
     (SELECT id 
     FROM customers 
 		WHERE fname='Elizabeth' AND lname='Crocker');
 
+-----------------------------------------------------------------
+--  PROBLEM 3
+-----------------------------------------------------------------
+--  Employees need to be scheduled for next week based on how 
+--    many cupcakes have been ordered and not yet processed.
+
+--  Write a query that gets the total number of cupcakes from 
+--    unprocessed orders.
+SELECT SUM(num_cupcakes) 
+FROM orders
+WHERE processed=false;
