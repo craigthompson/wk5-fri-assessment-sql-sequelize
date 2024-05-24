@@ -58,9 +58,27 @@ WHERE processed=false;
 
 --  The report should show all cupcake types, even if they have 
 --    not been ordered at all.
-SELECT name, SUM(o.num_cupcakes)
+SELECT c.name, SUM(o.num_cupcakes) AS sum
 FROM cupcakes AS c
 	LEFT JOIN orders AS o
 		ON c.id = o.cupcake_id
 GROUP BY c.name
-ORDER BY name ASC;
+ORDER BY c.name ASC;
+
+-----------------------------------------------------------------
+--  PROBLEM 5
+-----------------------------------------------------------------
+--  Marketing now wants to send an email to its top customers, 
+--    thanking them for their business and offering them a 
+--    special deal for next month.
+
+--  Write a query that shows the email address of each customer 
+--    and the total number of cupcakes they’ve ordered. Results 
+--    should be sorted by total number of cupcakes, in descending 
+--    order.
+SELECT email, SUM(o.num_cupcakes) AS total
+FROM customers AS c
+	LEFT JOIN orders AS o
+		ON c.id = o.customer_id
+GROUP BY email
+ORDER BY email;
