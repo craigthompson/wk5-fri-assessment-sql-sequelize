@@ -82,3 +82,27 @@ FROM customers AS c
 		ON c.id = o.customer_id
 GROUP BY email
 ORDER BY email;
+
+-----------------------------------------------------------------
+--  PROBLEM 6
+-----------------------------------------------------------------
+--  Uh oh — it looks like there might have been an issue with a 
+--    recent batch of funfetti cupcakes (someone might have 
+--    ordered non-edible sparkles to put in the icing instead of 
+--    edible ones). We need to let our customers who have 
+--    processed orders of funfetti cupcakes know about the issue.
+
+--  Write a query that selects the first name, last name and 
+--    email address of customers who have processed orders of 
+--    funfetti cupcakes. Even if a customer has multiple 
+--    outstanding orders of funfetti, their email should only 
+--    appear once.
+SELECT DISTINCT fname, lname, email
+FROM customers AS c
+	LEFT JOIN orders AS o
+		ON c.id = o.customer_id
+WHERE o.processed=true AND o.cupcake_id=
+	(SELECT id 
+    FROM cupcakes 
+		WHERE name='funfetti')
+GROUP BY fname, lname, email, o.id;
