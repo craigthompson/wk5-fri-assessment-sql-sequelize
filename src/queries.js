@@ -66,11 +66,25 @@ export async function printHumansAndAnimals() {
   });
 }
 
-// printHumansAndAnimals().then((result) => {
-//   //the promise is resolved here
-//   console.log(result);
-// });
-
 // Return a Set containing the full names of all humans
 // with animals of the given species.
-export async function getHumansByAnimalSpecies(species) {}
+export async function getHumansByAnimalSpecies(species) {
+  const humans = new Set();
+
+  const animalsOfSpecies = await Animal.findAll({
+    where: {
+      species: `${species}`,
+    },
+    include: {
+      model: Human,
+    },
+  });
+
+  animalsOfSpecies.forEach(async (animal) => {
+    humans.add(animal.Human.getFullName());
+  });
+
+  return humans;
+}
+
+console.log(await getHumansByAnimalSpecies("dog"));
